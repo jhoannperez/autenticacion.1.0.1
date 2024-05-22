@@ -14,6 +14,7 @@
         } else {
             console.log('Usuario autenticado:', data.user);
             setUser(data.user);
+            localStorage.setItem('supabaseSession', JSON.stringify(data.session));
             goto('/welcome');
         }
     }
