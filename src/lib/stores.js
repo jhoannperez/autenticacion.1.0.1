@@ -1,7 +1,11 @@
 // @ts-nocheck
 import { writable } from 'svelte/store';
 
-export const user = writable(null);
+// Intentar cargar la sesión desde el almacenamiento local
+const storedSession = localStorage.getItem('supabaseSession');
+const initialUser = storedSession ? JSON.parse(storedSession).user : null;
+
+export const user = writable(initialUser);
 
 export function setUser(newUser) {
     user.set(newUser);

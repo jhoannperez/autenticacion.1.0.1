@@ -7,6 +7,7 @@
     let password = '';
 
     async function register() {
+        // @ts-ignore
         const { user, error } = await supabase.auth.signUp({ email, password });
         if (error) {
             console.error('Error registering:', error.message);
