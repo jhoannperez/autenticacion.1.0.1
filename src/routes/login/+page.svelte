@@ -8,12 +8,12 @@
 
     async function login() {
         console.log('Iniciando sesión con:', email, password);
-        const { user, error } = await supabase.auth.signInWithPassword({ email, password });
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) {
             console.error('Error logging in:', error.message);
         } else {
-            console.log('Usuario autenticado:', user);
-            setUser(user);
+            console.log('Usuario autenticado:', data.user);
+            setUser(data.user);
             goto('/welcome');
         }
     }
