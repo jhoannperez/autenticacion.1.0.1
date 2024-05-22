@@ -1,14 +1,15 @@
 import { supabase } from '$lib/supabase';
 import { setUser, clearUser } from '$lib/stores';
 
+// @ts-ignore
 export async function handle({ event, resolve }) {
-	const { user } = await supabase.auth.getUser();
+    const { data: { session } } = await supabase.auth.getSession();
 
-	if (user) {
-		setUser(user);
-	} else {
-		clearUser();
-	}
+    if (session) {
+        setUser(session.user);
+    } else {
+        clearUser();
+    }
 
-	return resolve(event);
+    return resolve(event);
 }
